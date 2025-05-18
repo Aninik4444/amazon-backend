@@ -3,3 +3,4 @@
 API.rest
 /coverage
 Dockerfile
+package-lock.json

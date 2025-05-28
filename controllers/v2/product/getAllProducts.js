@@ -47,7 +47,6 @@ const getAllProducts = async (req, res) => {
   }
   const limit = Number(req.query.limit) || 10;
   const page = Number(req.query.page) || 1;
-  console.log({result})
   const products = await result.skip((page - 1) * limit).limit(limit);
   const count = await Product.countDocuments(queryObject);
   if (!products) {

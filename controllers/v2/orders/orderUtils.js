@@ -1,6 +1,5 @@
 const  Product  = require('../../../models/Product');
 const addOrderDetails = async (order) => {
-    console.log({order});
   const { products } = order;
   const temp = await Promise.all(
     products.map(async (product) => {

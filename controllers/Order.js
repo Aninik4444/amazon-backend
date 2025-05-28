@@ -3,7 +3,6 @@ const Order = require('../models/Order');
 const Product = require('../models/Product');
 const Cart = require('../models/Cart');
 const addOrderDetails = async (order) => {
-  console.log(JSON.stringify(order, null, 2));
   const { products } = order;
   const temp = await Promise.all(
     products.map(async (product) => {
@@ -35,6 +34,7 @@ const getOrders = async (req, res) => {
 };
 const addOrders = async (req, res) => {
   const userOrder = await Order.findOne({ createdBy: req.user.userId });
+  Order.find({}).populate('userOrder', 'name email');
   await Cart.deleteMany({ createBy: req.user.userId });
   if (!userOrder) {
     const newOrder = await Order.create({
@@ -53,7 +53,6 @@ const getOrder = async (req, res) => {
   const userOrder = await Order.findOne({ createdBy: req.user.userId })
     .lean()
     .exec();
-    console.log({userOrder});
   if (!userOrder) {
     res.status(StatusCodes.NOT_FOUND).json('No orders found for user');
   } else {

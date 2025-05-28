@@ -6,7 +6,7 @@ const {updateOrder} = require('../../../controllers/v2/orders/updateOrder');
 
 
 router.get('/:id', getOrder);
-router.post('/', addOrders);
+router.post('/', addOrders); 
 router.get('/', getOrders);
 router.patch('/:id', updateOrder);
 

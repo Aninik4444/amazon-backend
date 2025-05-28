@@ -6,7 +6,6 @@ const getOrder = async (req, res) => {
   const userOrder = await Order.findOne({ createdBy: req.user.userId })
     .lean()
     .exec();
-    console.log({userOrder});
   if (!userOrder) {
     res.status(StatusCodes.NOT_FOUND).json('No orders found for user');
   } else {
